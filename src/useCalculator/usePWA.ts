@@ -37,7 +37,7 @@ export function usePWA(
       deferredPrompt = evt as BeforeInstallPromptEvent
       handleNote({
         onAction,
-        action: `Install RPNcalc+ for easier access.`,
+        action: `Install BRUH Calculator for easier access.`,
       })()
     }
 
@@ -52,7 +52,7 @@ export function usePWA(
     // update prompt
     function onUpdate(registration: ServiceWorkerRegistration) {
       handleNote({
-        action: "New version of RPNcalc+ is available. Press to update.",
+        action: "New version of BRUH (oh got I've always wanted to type that) is available. Press to update!",
         expire: 30000,
         onAction: () => {
           registration.waiting?.postMessage({ type: "SKIP_WAITING" })

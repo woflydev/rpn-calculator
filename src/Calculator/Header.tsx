@@ -14,7 +14,7 @@ export function Header() {
   }
   return (
     <div className="header">
-      <div className="title">RPNcalc+</div>
+      <div className="title">BRUH Calculator</div>
       <Key
         color="red"
         kbd="F10"
