@@ -1,2 +1,2 @@
-# rpn-calculator
-Web-based calculator for Reverse Polish Notation.
+# RPN Calculator
+Bad PWA Calculator.
