@@ -12,12 +12,12 @@ export function useCalculator() {
   const { mod, toggleMod } = useModifiers()
   const { note, handleNote } = useNote()
   usePWA(handleNote)
-
+	
   useEffect(() => writeCommands(commands))
 
   const slice = (i: number) =>
     setCommands((prev) => prev.slice(undefined, i + 1))
-
+		
   const handleOperation = (e: string, minStack: number) => () => {
     if (!!minStack && calculator(commands).length < minStack) {
       handleNote({
