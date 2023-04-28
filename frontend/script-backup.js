@@ -9,16 +9,21 @@ new Vue({
 
 
   methods: {
+    
     compute: function () {
       this.stack = [];
       for (var i = 0; i < this.formula.length; i++) {
         var char = this.formula.substring(i, i + 1);
+
         if (!isNaN(char) && char != " ") {
+          // pushes the character
           this.stack.push(+char);
-          console.log("Next number. The stack is now: ", this.stack);
+          console.log("Adding new number to stack! The stack is now: ", this.stack);
         } else if (char === " ") {
+          console.log("Continuing...")
           continue;
         } else {
+
           var num1 = this.stack[this.stack.length - 2];
           var num2 = this.stack[this.stack.length - 1];
           var result = null;
@@ -37,7 +42,7 @@ new Vue({
               console.log("Subtracting " + num1 + "-" + num2);
               break;
 
-            case "x":case "*":
+            case "x": case "*":
               result = num1 * num2;
               console.log("Multiplying " + num1 + "*" + num2);
               break;
@@ -45,7 +50,8 @@ new Vue({
             case "/":
               result = num1 / num2;
               console.log("Dividing " + num1 + "/" + num2);
-              break;}
+              break;
+          }
 
 
           this.stack.push(result);
