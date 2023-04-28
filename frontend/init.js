@@ -1,12 +1,13 @@
 function reversePolish(newExpr) {
     let expr = newExpr.split(" ");
-    let stack =[];
-     if(expr === ''){
+    let stack = [];
+    
+    if(expr === ''){
       return 0;
     }
   
-    for(let i=0; i<expr.length; i++) {
-      if(!isNaN(expr[i]) && isFinite(expr[i])) {
+    for (let i = 0; i < expr.length; i++) {
+      if (!isNaN(expr[i]) && isFinite(expr[i])) {
         stack.push(expr[i]);
       }
       

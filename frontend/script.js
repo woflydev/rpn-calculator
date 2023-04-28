@@ -9,10 +9,72 @@ new Vue({
 
 
   methods: {
-    
     compute: function () {
+      function randomErrorMessage() {
+        const errorArray = [
+          "L bozo ur formula is wrong lol.",
+          "ur formula is wrong lol.",
+          "learn rpn before u try this again.",
+          "the formula's wrong, learn rpn bro."
+        ]
+        return errorArray[Math.floor(Math.random(0, errorArray.length) * errorArray.length)];
+      }
+
+
+      function reversePolish(newExpr) {
+        let expr = newExpr.split(" ");
+        let stack = [];
+        
+        if(expr === ''){
+          return 0;
+        }
+      
+        for (let i = 0; i < expr.length; i++) {
+          if (!isNaN(expr[i]) && isFinite(expr[i])) {
+            stack.push(expr[i]);
+          }
+          
+          else {
+            let a = stack.pop();
+            let b = stack.pop();
+            if(expr[i] === "+") {
+              stack.push(parseInt(a) + parseInt(b));
+            } else if(expr[i] === "-") {
+                stack.push(parseInt(b) - parseInt(a));
+              } else if(expr[i] === "*") {
+                  stack.push(parseInt(a) * parseInt(b));
+              } else if(expr[i] === "/") {
+                  stack.push(parseInt(b) / parseInt(a));
+              } else if(expr[i] === "^") {
+                  stack.push(Math.pow(parseInt(b), parseInt(a)));
+              }
+          }
+        }
+      
+        if (stack.length > 1) {
+          return "ERROR";
+        } 
+        
+        else {
+          console.log(stack[0])
+          return stack[0];
+        }
+      }
+      
       this.stack = [];
-      for (var i = 0; i < this.formula.length; i++) {
+
+      this.stack.push(reversePolish(this.formula));
+
+      if (this.stack.length != 1 || isNaN(this.stack[0])) {
+        this.stack = [];
+        this.stack.push(randomErrorMessage());
+        this.valid = false;
+      } 
+      else {
+        this.valid = true;
+      }
+
+      /*for (var i = 0; i < this.formula.length; i++) {
         var char = this.formula.substring(i, i + 1);
 
         if (!isNaN(char) && char != " ") {
@@ -64,5 +126,5 @@ new Vue({
         this.valid = false;
       } else {
         this.valid = true;
-      }
+      }*/
     } } });
