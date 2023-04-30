@@ -17,25 +17,46 @@
     <input type="text" v-model="formula" v-on:keydown.enter="compute" v-bind:class="{'valid': valid, 'invalid': !valid}"/>
     <div>
       <button v-on:click="compute">Calculate! </button>
+			<button @click="cls">Clear Logs </button>
 
     </div>
     <div class="about">
-				<p>
-					<div class="code">
-						Control + Shift + I
-					</div>
-					to get a step by step breakdown of the calculation!
-				</p>
-      <a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation">RPN on Wikipedia</a>
+			<p>
+				<div class="code">
+					Control + Shift + I
+				</div>
+				then
+				<div class="code">
+					Console
+				</div>
+				to get a step by step breakdown of the calculation!
+			</p>
+			
+			<br>
+			
+			<p>Reverse Polish Notation on
+				<a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation" target="_blank">Wikipedia</a>.
+			</p>
+
+			<p>Made with 
+				<a href="https://vuejs.org/" target="_blank">Vue</a>.
+			</p>
+			
+			<p>Written by
+				<a href="https://github.com/woflydev" target="_blank">woflydev</a>.
+			</p>
+			
     </div>
-		<br>
-		<p>BRUH - a Bad RPN Utility without Heaps. Written by <a href="https://github.com/woflydev">woflydev</a>.</p>
-		
   </div>
 </div>
 
+<div class="footer">
+	<p>BRUH - a Bad RPN Utility without Heaps.</p>
+</div>
+
 	<!-- what can i say, vue is good -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.20/vue.min.js'></script><script  src="./script.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.20/vue.min.js'></script>
+	<script src="./script-min.js"></script>
 
 </body>
 </html>

@@ -41,10 +41,11 @@ html, body {
 	background-color: #483D3C;
 }
 .content button {
-  padding: 15px;
-  border: none;
+  padding: 10px;
+  border: 0.15rem solid #776868;
+	border-radius: 1rem;
   background: #A7CF5D;
-  color: white;
+  color: #483D3C;
   font-size: 16px;
   margin-top: 15px;
 }
@@ -67,6 +68,8 @@ html, body {
   color: #988F2A;
 }
 .content .code {
+	border: 0.2rem solid #776868;
+	border-radius: 1rem;
   padding: 4px 8px;
   background: #483D3C;
   color: #A7CF5D;
@@ -80,4 +83,15 @@ html, body {
 
 .invalid {
   border: 3px solid red;
+}
+
+.footer {
+	position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #483D3C;
+  color: white;
+  text-align: center;
+	padding-bottom: 2rem;
 }
