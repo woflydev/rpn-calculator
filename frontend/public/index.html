@@ -16,7 +16,7 @@
     <p class="result" v-if="stack.length">= {{ stack[stack.length - 1] }}</p>
     <input type="text" v-model="formula" v-on:keydown.enter="compute" v-bind:class="{'valid': valid, 'invalid': !valid}"/>
     <div>
-      <button class="raise" v-on:click="compute">Calculate! </button>
+      <button v-on:click="compute">Calculate! </button>
 			<button @click="cls">Clear Logs </button>
 
     </div>

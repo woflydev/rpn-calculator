@@ -40,7 +40,6 @@ html, body {
   outline: none;
 	background-color: #483D3C;
 }
-
 .content button {
   padding: 10px;
   border: 0.15rem solid #776868;
@@ -50,23 +49,6 @@ html, body {
   font-size: 16px;
   margin-top: 15px;
 }
-
-button {
-	color: var(--color);
-	transition: 0.25s;
-}
-
-button:hover {
-	border-color: var(--hover);
-	color: #fff;
-	box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
-	transform: translateY(-0.25em);
-}
-
-button:focus {
-	transition: 0.25s;
-}
-
 .content .result {
   font-size: 36px;
   margin-bottom: 15px;
