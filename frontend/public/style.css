@@ -40,6 +40,7 @@ html, body {
   outline: none;
 	background-color: #483D3C;
 }
+
 .content button {
   padding: 10px;
   border: 0.15rem solid #776868;
@@ -49,6 +50,23 @@ html, body {
   font-size: 16px;
   margin-top: 15px;
 }
+
+button {
+	color: var(--color);
+	transition: 0.25s;
+}
+
+button:hover {
+	border-color: var(--hover);
+	color: #fff;
+	box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+	transform: translateY(-0.25em);
+}
+
+button:focus {
+	transition: 0.25s;
+}
+
 .content .result {
   font-size: 36px;
   margin-bottom: 15px;
@@ -67,10 +85,10 @@ html, body {
 .content .about a, .content .about a:visited {
   color: #988F2A;
 }
-.content .code {
+.code {
 	border: 0.2rem solid #776868;
-	border-radius: 1rem;
-  padding: 4px 8px;
+	border-radius: .75rem;
+  padding: 1px 9px;
   background: #483D3C;
   color: #A7CF5D;
   display: inline-block;
