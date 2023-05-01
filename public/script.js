@@ -33,7 +33,7 @@ new Vue({
 					"not sure how to parse this.",
 					"can't parse this. try again.",
 					"something's wrong with your formula."
-        ];
+        ]
 				
         return errorArray[Math.floor(Math.random() * errorArray.length)];
       }
