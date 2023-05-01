@@ -85,10 +85,10 @@ button:focus {
 .content .about a, .content .about a:visited {
   color: #988F2A;
 }
-.content .code {
+.code {
 	border: 0.2rem solid #776868;
-	border-radius: 1rem;
-  padding: 4px 8px;
+	border-radius: .75rem;
+  padding: 1px 9px;
   background: #483D3C;
   color: #A7CF5D;
   display: inline-block;

@@ -3,7 +3,7 @@ new Vue({
   el: '#app',
 
   data: {
-    formula: '7.85 7 + 2 * 8.8243 4 / - 3 * 9.1453 + 6 2 - / 1.102 - 4 * 2 / 7 3 * -',
+    formula: '5.46 6.13 * 7.153 + 8.12 9 + * 424 / -2.128 ^ 10.1 - 3.0258 * 2.1 * 1.7 /',
     answer: "",
     valid: true,
     validOperators: ['*', 'x', '/', '-', '+'] },
@@ -28,14 +28,16 @@ new Vue({
         const errorArray = [
           "check console for error logs.",
 					"look at error logs!",
-					"formula invalid, try again.",
+					"try again.",
 					"control+shift+i for console.",
+					"not sure how to parse this.",
+					"can't parse this. try again.",
+					"something's wrong with your formula."
         ]
 				
-        return errorArray[Math.floor(Math.random(0, errorArray.length) * errorArray.length)];
+        return errorArray[Math.floor(Math.random() * errorArray.length)];
       }
 
-			
 			/*
 			Container function for the reverse polish notation algorithm.
 			*/
@@ -43,61 +45,60 @@ new Vue({
 				console.log("\nNew calculation!");
 				
 				// dynamic array from input formula
-        let expr = newExpr.split(" ");
+				var trimmed = newExpr.trim();
+        let expr = trimmed.split(" ");
         let stack = [];
         
-				// nothing is in the formula
+				// if nothing was passed into function
         if (expr === '') {
-          return;
+          return ["", ""];
         }
 				
         for (let i = 0; i < expr.length; i++) {
-					// if is number AND is finite, will be number
+					// if is number AND is finite, will be number. must also check
           if (!isNaN(expr[i]) && isFinite(expr[i])) {
             stack.push(expr[i]);
           }
-          
+					
 					/*
 					If !number (will pass above test), we have reached the end of 1 block.
 					Time to begin calculations.
 					*/
           else {
-						console.log("Items in stack: [" + stack + "]");
-						
 						/* 
-						pops two most recent items from stack, to 
+						pops only the two most recent items, to 
 						handle edge cases like 7 7 + 2 * 8 4 / - where 
 						two operators are next to each other
 						*/
-						let a = stack.pop();
-            let b = stack.pop();
-
+						var a = stack.pop();
+						var b = stack.pop();
+						
 						switch (expr[i]) {
 							case "+":
-								console.log("Doing " + a + " + " + b + ".");
-								stack.push(parseFloat(a) + parseFloat(b));
+								console.log("Doing " + b + " + " + a + ".");
+								stack.push(parseFloat(b) + parseFloat(a));
 								break;
 							case "-":
-								console.log("Doing " + a + " - " + b + ".");
+								console.log("Doing " + b + " - " + a + ".");
 								stack.push(parseFloat(b) - parseFloat(a));
 								break;
-							case "*":
-								console.log("Doing " + a + " * " + b + ".");
-								stack.push(parseFloat(a) * parseFloat(b));
+							case "*": case "x":
+								console.log("Doing " + b + " * " + a + ".");
+								stack.push(parseFloat(b) * parseFloat(a));
 								break;
 							case "/":
-								console.log("Doing " + a + " / " + b + ".");
+								console.log("Doing " + b + " / " + a + ".");
 								stack.push(parseFloat(b) / parseFloat(a));
 								break;
 							case "^":
-								console.log("Doing " + a + " ^ " + b + ".");
+								console.log("Doing " + b + " ^ " + a + ".");
 								stack.push(Math.pow(parseFloat(b), parseFloat(a)));
 								break;
 							case "%":
-								console.log("Doing " + a + " % " + b + ".");
+								console.log("Doing " + b + " % " + a + ".");
 								stack.push(parseFloat(b) % parseFloat(a));
 								break;
-							// secret operator
+							// secret operator hehe
 							case "`":
 								console.log("How did you even think of putting a backtick?");
 								stack.push(69);
@@ -110,30 +111,31 @@ new Vue({
         }
       
 				// if there is more than one item in the stack, something went wrong
-        if (stack.length > 1) {
-          return;
-        } 
-        
+        if (stack.length != 1) {
+          return ["", ""];
+        }
+
         else {
-          return stack[0];
+          return [stack[0], expr.length];
         }
       }
-
+			
 			// calls the function and obtains result
       var result = reversePolish(this.formula);
-      //this.stack.push(result);
-			this.answer = result;
-			
-			console.log("Calculation Result: " + result);
-			
+		
+			var answer = result[0];
+			var length = result[1];
+		
 			// validates result
-      /*if (this.stack.length != 1 || isNaN(this.stack[0]) || this.stack[0] === "") {
-        this.stack = [];
-        this.stack.push(randomErrorMessage());
-        this.valid = false;
-      }
-			// makes the box go green
-      else {
-        this.valid = true;
-      }*/
+			if (isNaN(answer) || answer === "" || !isFinite(answer)) {
+				console.log("Invalid formula: " + this.formula);
+				this.answer = randomErrorMessage();
+				this.valid = false;
+			}
+			
+			else {
+				console.log("Result: " + answer + " | Formula: " + this.formula + " | Obtained in " + length + " steps.");
+				this.answer = answer;
+				this.valid = true;
+			}
 }}});
