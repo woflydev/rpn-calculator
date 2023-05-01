@@ -13,11 +13,13 @@
 <div class="wrapper" id="app">
   <div class="content">
     <h1>BRUH Calculator</h1>
-    <p class="result" v-if="stack.length">= {{ stack[stack.length - 1] }}</p>
-    <input type="text" v-model="formula" v-on:keydown.enter="compute" v-bind:class="{'valid': valid, 'invalid': !valid}"/>
+    <p class="result" v-if="isFinite(answer) && answer != null && answer != ''">= {{answer}}</p>
+		
+    <input onfocus="this.value=''" id="input" type="text" v-model="formula" v-on:keydown.enter="compute" v-bind:class="{'valid': valid, 'invalid': !valid}"/>
+		
     <div>
-      <button class="raise" v-on:click="compute">Calculate! </button>
-			<button @click="cls">Clear Logs </button>
+      <button class="raise" v-on:click="compute">Calculate!</button>
+			<button @click="cls">Clear</button>
 
     </div>
     <div class="about">
@@ -56,7 +58,7 @@
 
 	<!-- what can i say, vue is good -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.20/vue.min.js'></script>
-	<script src="./script-min.js"></script>
+	<script src="./script.js"></script>
 
 </body>
 </html>
