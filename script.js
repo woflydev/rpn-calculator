@@ -132,7 +132,21 @@ new Vue({
 		
 			// validates result
 			if (isNaN(answer) || answer === "" || !isFinite(answer)) {
-				console.log("Invalid formula: " + this.formula);
+				switch (answer) {
+					case "":
+						answer = "Invalid formula.";
+						break;
+					case Infinity:
+						answer = "Infinity.";
+						break;
+					case -Infinity:
+						answer = "-Infinity.";
+						break;
+					default:
+						answer = "Operation outside of scope. Congrats! You managed to break the calculator by inputting " + this.formula + ".";
+						break;
+				}
+				console.log("Invalid formula: " + this.formula + " | Finished with error: " + answer);
 				this.answer = errorMsg();
 				this.valid = false;
 			}
