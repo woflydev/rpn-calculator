@@ -18,8 +18,8 @@
     <input id="input" type="text" v-model="formula" v-on:keydown.enter="compute" v-bind:class="{'valid': valid, 'invalid': !valid}"/>
 		
     <div>
-      <button class="raise" v-on:click="compute">Calculate!</button>
-			<button @click="cls">Clear</button>
+      <button class="btn" @click="compute">Calculate!</button>
+			<button class="btn" @click="cls">Clear</button>
 
     </div>
     <div class="about">
@@ -31,6 +31,11 @@
 				<div class="code">/</div> divide &nbsp;&nbsp;
 				<div class="code">^</div> exponent &nbsp;&nbsp;
 				<div class="code">%</div> modulo &nbsp;&nbsp;
+				
+				<br>
+				
+				If you're unsure of how to get started, try running 
+				<button class="code clickable" @click="set">3 2 +</button> .
 			</p>
 			
 			<br>

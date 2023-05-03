@@ -9,6 +9,10 @@ new Vue({
     validOperators: ['*', 'x', '/', '-', '+'] },
 
   methods: {
+		set: function () {
+			this.formula = "3 2 +"
+		},
+		
 		// utils for reset
 		cls: function () {
 			var input = document.getElementById("input");
