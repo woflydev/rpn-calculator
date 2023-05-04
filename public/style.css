@@ -41,7 +41,7 @@ html, body {
 	background-color: #483D3C;
 }
 
-.content button {
+.content .btn {
   padding: 10px;
   border: 0.15rem solid #776868;
 	border-radius: 1rem;
@@ -51,19 +51,19 @@ html, body {
   margin-top: 15px;
 }
 
-button {
+.btn {
 	color: var(--color);
 	transition: 0.25s;
 }
 
-button:hover {
+.btn:hover {
 	border-color: var(--hover);
 	color: #fff;
 	box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
 	transform: translateY(-0.25em);
 }
 
-button:focus {
+.btn:focus {
 	transition: 0.25s;
 }
 
@@ -93,6 +93,26 @@ button:focus {
   color: #A7CF5D;
   display: inline-block;
   margin: 5px 0;
+}
+
+.clickable {
+	border: 0.2rem solid #776868;
+	border-radius: .75rem;
+  padding: 1px 9px;
+  background: #483D3C;
+  color: #A7CF5D;
+  display: inline-block;
+  margin: 5px 0;
+	transition: 0.25s;
+}
+.clickable:hover {
+	border-color: var(--hover);
+	color: #fff;
+	box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+	transform: translateY(-0.25em);
+}
+.clickable:focus {
+	transition: 0.25s;
 }
 
 .valid {

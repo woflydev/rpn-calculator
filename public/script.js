@@ -9,6 +9,10 @@ new Vue({
     validOperators: ['*', 'x', '/', '-', '+'] },
 
   methods: {
+		set: function () {
+			this.formula = "3 2 +"
+		},
+		
 		// utils for reset
 		cls: function () {
 			var input = document.getElementById("input");
@@ -45,7 +49,7 @@ new Vue({
 				console.log("\nNew calculation!");
 				
 				// dynamic array from input formula
-				var trimmed = newExpr.trim();
+				let trimmed = newExpr.trim();
         let expr = trimmed.split(" ");
         let stack = [];
         
@@ -125,10 +129,25 @@ new Vue({
 		
 			var answer = result[0];
 			var length = result[1];
-		
+
 			// validates result
 			if (isNaN(answer) || answer === "" || !isFinite(answer)) {
-				console.log("Invalid formula: " + this.formula);
+				switch (answer) {
+					case "":
+						answer = "Invalid formula.";
+						break;
+					case Infinity:
+						answer = "Infinity.";
+						break;
+					case -Infinity:
+						answer = "-Infinity.";
+						break;
+					default:
+						answer = "Operation outside of scope. Congrats! You managed to break the calculator by inputting " + this.formula + ".";
+						break;
+				}
+				
+				console.log("Invalid formula: " + this.formula + " | Finished with error: " + answer);
 				this.answer = errorMsg();
 				this.valid = false;
 			}
