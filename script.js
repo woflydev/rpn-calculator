@@ -49,7 +49,7 @@ new Vue({
 				console.log("\nNew calculation!");
 				
 				// dynamic array from input formula
-				var trimmed = newExpr.trim();
+				let trimmed = newExpr.trim();
         let expr = trimmed.split(" ");
         let stack = [];
         
@@ -129,7 +129,7 @@ new Vue({
 		
 			var answer = result[0];
 			var length = result[1];
-			
+
 			// validates result
 			if (isNaN(answer) || answer === "" || !isFinite(answer)) {
 				switch (answer) {
