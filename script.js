@@ -6,7 +6,7 @@ new Vue({
     formula: '5.46 6.13 * 7.153 + 8.12 9 + * 424 / -2.128 ^ 10.1 - 3.0258 * 2.1 * 1.7 /',
     answer: "",
     valid: true,
-    validOperators: ['*', 'x', '/', '-', '+'] },
+    validOperators: ['*', 'x', '/', '-', '+', '%', '^'] },
 
   methods: {
 		set: function () {
