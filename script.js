@@ -38,7 +38,7 @@ new Vue({
 					"can't parse this. try again.",
 					"something's wrong with your formula."
         ];
-				
+
         return errorArray[Math.floor(Math.random() * errorArray.length)];
       }
 
@@ -50,18 +50,18 @@ new Vue({
 				
 				// dynamic array from input formula
 				let trimmed = newExpr.trim();
-        let expr = trimmed.split(" ");
+        let trimmedExpression = trimmed.split(" ");
         let stack = [];
         
 				// if nothing was passed into function
-        if (expr === '') {
+        if (trimmedExpression === '') {
           return ["", ""];
         }
 				
-        for (let i = 0; i < expr.length; i++) {
+        for (let i = 0; i < trimmedExpression.length; i++) {
 					// if is number AND is finite, will be number. must also check
-          if (!isNaN(expr[i]) && isFinite(expr[i])) {
-            stack.push(expr[i]);
+          if (!isNaN(trimmedExpression[i]) && isFinite(trimmedExpression[i])) {
+            stack.push(trimmedExpression[i]);
           }
 					
 					/*
@@ -77,7 +77,7 @@ new Vue({
 						var a = stack.pop();
 						var b = stack.pop();
 						
-						switch (expr[i]) {
+						switch (trimmedExpression[i]) {
 							case "+":
 								console.log("Doing " + b + " + " + a + ".");
 								stack.push(parseFloat(b) + parseFloat(a));
@@ -108,30 +108,32 @@ new Vue({
 								stack.push(69);
 								break;
 							default:
-								console.log("Invalid operator: " + expr[i]);
+								console.log("Invalid operator: " + trimmedExpression[i]);
 								break;
 						}
           }
         }
       
+				let calculationResult = stack[0];
+
 				// if there is more than one item in the stack, something went wrong
-        if (stack.length != 1) {
-          return ["", ""];
+        if (isNaN(calculationResult) || calculationResult === "" || !isFinite(calculationResult) || stack.length != 1) {
+          return [, ""];
         }
 
         else {
-          return [stack[0], expr.length];
+          return [calculationResult, trimmedExpression.length];
         }
       }
-			
+
 			// calls the function and obtains result
-      var result = reversePolish(this.formula);
+      let result = reversePolish(this.formula);
 		
 			var answer = result[0];
 			var length = result[1];
 
-			// validates result
-			if (isNaN(answer) || answer === "" || !isFinite(answer)) {
+			// validates result to ensure there wasn't error
+			if (answer === "") {
 				switch (answer) {
 					case "":
 						answer = "Invalid formula.";
