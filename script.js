@@ -122,24 +122,25 @@ new Vue({
       
 				let calculationResult = stack[0];
 
-				// if there is more than one item in the stack, something went wrong
 				// validates result to ensure there wasn't error
         if (isNaN(calculationResult) || calculationResult === "" || !isFinite(calculationResult) || stack.length != 1) {
+					/* 
+					thank you so much 
+					to this SO post -> 
+					https://stackoverflow.com/questions/11658439/how-do-you-have-a-nan-case-in-a-switch-statement
+					*/
 					switch (calculationResult) {
 						case "":
 							calculationResult = "Invalid formula.";
 							break;
 						case Infinity:
-							calculationResult = "Infinity.";
+							calculationResult = "Division by zero or Infinity.";
 							break;
 						case -Infinity:
-							calculationResult = "-Infinity.";
-							break;
-						case NaN:
-							calculationResult = "NaN.";
+							calculationResult = "Division by negative zero or -Infinity.";
 							break;
 						default:
-							calculationResult = "Non-mathematical formula.";
+							isNaN(calculationResult) && calculationResult != undefined ? calculationResult = "Not a number!" : calculationResult = "Non-mathematical formula.";
 							break;
 					}
 					
