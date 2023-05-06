@@ -24,7 +24,8 @@ new Vue({
 			this.answer = "";
 		},
 		
-    compute: function () {
+    evaluate: function () {
+			// viewmodel boilerplate
 			var vm = this;
 			
 			/*
