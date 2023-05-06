@@ -1,5 +1,9 @@
 new Vue({
-	// vue frontend boilerplate
+	/* 
+	Vue frontend boilerplate,
+	thanks to vue docs -> https://vuejs.org/guide/introduction.html and
+	the github community -> https://github.com/vuejs-tips/vue-the-mask/issues/92.
+	*/
   el: '#app',
 
   data: {
@@ -25,7 +29,9 @@ new Vue({
 		},
 		
     evaluate: function () {
-			// viewmodel boilerplate
+			/* this stackoverflow issue 
+			-> https://stackoverflow.com/questions/36176073/what-is-vue-way-to-access-to-data-from-methods
+			*/
 			var vm = this;
 			
 			/*
