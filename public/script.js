@@ -1,12 +1,17 @@
 new Vue({
-	// vue frontend boilerplate
+	/* 
+	Vue frontend boilerplate,
+	thanks to vue docs -> https://vuejs.org/guide/introduction.html and
+	the github community -> https://github.com/vuejs-tips/vue-the-mask/issues/92.
+	*/
   el: '#app',
 
   data: {
     formula: '5.46 6.13 * 7.153 + 8.12 9 + * 424 / -2.128 ^ 10.1 - 3.0258 * 2.1 * 1.7 /',
     answer: "",
     valid: true,
-    validOperators: ['*', 'x', '/', '-', '+', '%', '^'] },
+    validOperators: ['*', 'x', '/', '-', '+', '%', '^'] 
+	},
 
   methods: {
 		set: function () {
@@ -25,7 +30,9 @@ new Vue({
 		},
 		
     evaluate: function () {
-			// viewmodel boilerplate
+			/* this stackoverflow issue 
+			-> https://stackoverflow.com/questions/36176073/what-is-vue-way-to-access-to-data-from-methods
+			*/
 			var vm = this;
 			
 			/*
@@ -115,21 +122,25 @@ new Vue({
       
 				let calculationResult = stack[0];
 
-				// if there is more than one item in the stack, something went wrong
 				// validates result to ensure there wasn't error
         if (isNaN(calculationResult) || calculationResult === "" || !isFinite(calculationResult) || stack.length != 1) {
+					/* 
+					thank you so much 
+					to this SO post -> 
+					https://stackoverflow.com/questions/11658439/how-do-you-have-a-nan-case-in-a-switch-statement
+					*/
 					switch (calculationResult) {
 						case "":
 							calculationResult = "Invalid formula.";
 							break;
 						case Infinity:
-							calculationResult = "Infinity.";
+							calculationResult = "Division by zero or Infinity.";
 							break;
 						case -Infinity:
-							calculationResult = "-Infinity.";
+							calculationResult = "Division by negative zero or -Infinity.";
 							break;
 						default:
-							calculationResult = "Non-mathematical formula.";
+							isNaN(calculationResult) && calculationResult != undefined ? calculationResult = "Not a number!" : calculationResult = "Non-mathematical formula.";
 							break;
 					}
 					
