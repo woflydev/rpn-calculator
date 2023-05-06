@@ -125,11 +125,15 @@ new Vue({
 				// validates result to ensure there wasn't error
         if (isNaN(calculationResult) || calculationResult === "" || !isFinite(calculationResult) || stack.length != 1) {
 					/* 
-					thank you so much 
-					to this SO post -> 
-					https://stackoverflow.com/questions/11658439/how-do-you-have-a-nan-case-in-a-switch-statement
+					thank you so much to this stack overflow post explaining
+					implicit type conversion (or rather the lack of it)
+					in switch statements, I was so confused haha
+					-> https://stackoverflow.com/questions/11658439/how-do-you-have-a-nan-case-in-a-switch-statement
 					*/
 					switch (calculationResult) {
+						case NaN:
+							// this doesn't work
+							break;
 						case "":
 							calculationResult = "Invalid formula.";
 							break;
@@ -152,7 +156,7 @@ new Vue({
         }
       }
 			
-			// nooo you cant just chuck everything in one function
+			// nooo you cant just throw everything in one function
 			// haha vue go brr
 			reversePolish(this.formula);
 }}});
