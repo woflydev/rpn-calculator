@@ -134,6 +134,9 @@ new Vue({
 						case -Infinity:
 							calculationResult = "-Infinity.";
 							break;
+						case NaN:
+							calculationResult = "NaN.";
+							break;
 						default:
 							calculationResult = "Non-mathematical formula.";
 							break;
