@@ -25,6 +25,8 @@ new Vue({
 		},
 		
     compute: function () {
+			var vm = this;
+			
 			/*
 			Just for funsies, a random error message generator :)
 			*/
@@ -35,8 +37,9 @@ new Vue({
 					"try again.",
 					"control+shift+i for console.",
 					"not sure how to parse this.",
-					"can't parse this. try again.",
-					"something's wrong with your formula."
+					"check console with control+shift+i.",
+					"something's wrong with your formula.",
+					"control+shift+i."
         ];
 
         return errorArray[Math.floor(Math.random() * errorArray.length)];
@@ -52,16 +55,11 @@ new Vue({
 				let trimmed = newExpr.trim();
         let trimmedExpression = trimmed.split(" ");
         let stack = [];
-        
-				// if nothing was passed into function
-        if (trimmedExpression === '') {
-          return ["", ""];
-        }
-				
+
         for (let i = 0; i < trimmedExpression.length; i++) {
 					// if is number AND is finite, will be number. must also check
           if (!isNaN(trimmedExpression[i]) && isFinite(trimmedExpression[i])) {
-            stack.push(trimmedExpression[i]);
+						stack.push(trimmedExpression[i]);
           }
 					
 					/*
@@ -117,46 +115,32 @@ new Vue({
 				let calculationResult = stack[0];
 
 				// if there is more than one item in the stack, something went wrong
+				// validates result to ensure there wasn't error
         if (isNaN(calculationResult) || calculationResult === "" || !isFinite(calculationResult) || stack.length != 1) {
-          return [, ""];
+					switch (calculationResult) {
+						case "":
+							calculationResult = "Invalid formula.";
+							break;
+						case Infinity:
+							calculationResult = "Infinity.";
+							break;
+						case -Infinity:
+							calculationResult = "-Infinity.";
+							break;
+						default:
+							calculationResult = "Non-mathematical formula.";
+							break;
+					}
+					
+					console.log("Invalid formula: " + vm.formula + " | Finished with error: " + calculationResult); vm.answer = errorMsg(); vm.valid = false;
         }
 
-        else {
-          return [calculationResult, trimmedExpression.length];
+        else {					
+					console.log("Result: " + calculationResult + " | Formula: " + vm.formula + " | Obtained in " + trimmedExpression.length + " steps."); vm.answer = calculationResult; vm.valid = true;
         }
       }
-
-			// calls the function and obtains result
-      let result = reversePolish(this.formula);
-		
-			var answer = result[0];
-			var length = result[1];
-
-			// validates result to ensure there wasn't error
-			if (answer === "") {
-				switch (answer) {
-					case "":
-						answer = "Invalid formula.";
-						break;
-					case Infinity:
-						answer = "Infinity.";
-						break;
-					case -Infinity:
-						answer = "-Infinity.";
-						break;
-					default:
-						answer = "Operation outside of scope. Congrats! You managed to break the calculator by inputting " + this.formula + ".";
-						break;
-				}
-				
-				console.log("Invalid formula: " + this.formula + " | Finished with error: " + answer);
-				this.answer = errorMsg();
-				this.valid = false;
-			}
 			
-			else {
-				console.log("Result: " + answer + " | Formula: " + this.formula + " | Obtained in " + length + " steps.");
-				this.answer = answer;
-				this.valid = true;
-			}
+			// nooo you cant just chuck everything in one function
+			// haha vue go brr
+			reversePolish(this.formula);
 }}});

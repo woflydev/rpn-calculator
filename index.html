@@ -15,7 +15,7 @@
 		<!--conditional rendering for answer block-->
     <p class="result" v-if="answer != null">{{answer}}</p>
 		
-    <input id="input" type="text" v-model="formula" v-on:keydown.enter="compute" v-bind:class="{'valid': valid, 'invalid': !valid}"/>
+    <input id="input" type="text" v-model="formula" @keydown.enter="compute" v-bind:class="{'valid': valid, 'invalid': !valid}"/>
 		
     <div>
       <button class="btn" @click="compute">Calculate!</button>
