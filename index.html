@@ -16,7 +16,14 @@
 		<!--conditional rendering for answer block-->
     <p class="result" v-if="answer != null">{{answer}}</p>
 		
-    <input id="input" type="text" v-model="formula" @keydown.enter="evaluate" v-bind:class="{'valid': valid, 'invalid': !valid}"/>
+    <input 
+			id="input" 
+			type="text" 
+			v-model="formula" 
+			@keydown.ctrl.delete="cls" 
+			@keydown.enter="evaluate" 
+			v-bind:class="{'valid': valid, 'invalid': !valid}"
+		/>
 		
     <div>
       <button class="btn" @click="evaluate">Calculate!</button>
@@ -48,7 +55,7 @@
 
 			<p>Made with love by
 				<a href="https://github.com/woflydev" target="_blank">woflydev</a>
-				with
+				thanks to
 				<a href="https://vuejs.org/" target="_blank">VueJS</a>.
 			</p>
     </div>
