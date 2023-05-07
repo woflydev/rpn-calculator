@@ -138,10 +138,10 @@ new Vue({
 							calculationResult = "Invalid formula.";
 							break;
 						case Infinity:
-							calculationResult = "Division by zero or Infinity.";
+							calculationResult = "Division by zero / Infinity.";
 							break;
 						case -Infinity:
-							calculationResult = "Division by negative zero or -Infinity.";
+							calculationResult = "Division by negative zero / -Infinity.";
 							break;
 						default:
 							isNaN(calculationResult) && calculationResult != undefined ? calculationResult = "Not a number!" : calculationResult = "Non-mathematical formula.";
