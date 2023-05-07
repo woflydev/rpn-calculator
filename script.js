@@ -151,7 +151,7 @@ new Vue({
 					console.log("Invalid formula: " + vm.formula + " | Finished with error: " + calculationResult); vm.answer = errorMsg(); vm.valid = false;
         }
 
-        else {					
+        else {
 					console.log("Result: " + calculationResult + " | Formula: " + vm.formula + " | Obtained in " + trimmedExpression.length + " steps."); vm.answer = calculationResult; vm.valid = true;
         }
       }
