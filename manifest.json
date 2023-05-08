@@ -1,0 +1,25 @@
+{
+  "lang": "en-us",
+  "name": "bruh-calculator",
+  "short_name": "BRUH Calculator",
+  "description": "A simplistic and modern reverse polish notation calculator.",
+  "start_url": "/?standalone=true",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "any",
+  "display": "standalone",
+  "icons": [
+    {
+      "purpose": "any",
+      "src": "/icon512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/icon_maskable.png",
+      "purpose": "any maskable",
+      "type": "image/png",
+      "sizes":"512x512"
+    }
+  ]
+}

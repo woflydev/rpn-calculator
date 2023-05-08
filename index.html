@@ -4,14 +4,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+	<meta name="theme-color" content="#000000">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
+	<link rel="manifest" href="/manifest.json">
+	<link rel="icon" type="image/x-icon" href="/icon512.png">
+
   <title>BRUH - Bad RPN Utility without Heaps</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 <!--vue instance id-->
 <div class="wrapper" id="app">
-  <div class="content">
+  <div class="content">		
+
     <h1>BRUH Calculator</h1>
 		<!--conditional rendering for answer block-->
     <p class="result" v-if="answer != null">{{answer}}</p>
@@ -45,7 +50,7 @@
 				If you're unsure of how to get started, try running 
 				<button class="code clickable" @click="set">3 2 +</button> .
 			</p>
-			
+
 			<br>
 			
 			<!--links-->
@@ -59,6 +64,7 @@
 				thanks to
 				<a href="https://vuejs.org/" target="_blank">VueJS</a>.
 			</p>
+
     </div>
   </div>
 </div>
@@ -66,13 +72,32 @@
 <div class="footer">
 	<p>
 		<a href="https://bruh-calculator.web.app" target="_blank" title="Hosted on Firebase">BRUH</a> - a Bad RPN Utility without Heaps.
+		This webapp is <a href="https://en.wikipedia.org/wiki/Progressive_web_app" target="_blank">PWA</a> compatible!
 	</p>
 </div>
 
 	<!-- what can i say, vue is good -->
-	<!-- funnily enough this script accounted for almost 47% of the site's loading time-->
+	<!-- funnily enough this script accounted for almost ~87% of the site's loading time-->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.20/vue.min.js'></script>
 	<script src="./script.js"></script>
+	<script>
+		if ('serviceWorker' in navigator) {
+ 	 		navigator.serviceWorker.register('/sw.js', { scope: '/' })
+			.then( reg => {
+				reg.onupdatefound = () => {
+					const installingWorker = reg.installing;
+					installingWorker.onstatechange = () => {
+						if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+							const answer = window.confirm (
+								`This application has been updated. ` + `Ready to update?`
+							)
+							answer === true ? location.reload() : null;
+						}
+					};
+				};
+			});
+		}
+	</script>
 
 </body>
 </html>
