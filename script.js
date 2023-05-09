@@ -69,7 +69,7 @@ new Vue({
           if (!isNaN(trimmedExpression[i]) && isFinite(trimmedExpression[i])) {
 						stack.push(trimmedExpression[i]);
           }
-					
+
 					/*
 					If !number (will pass above test), we have reached the end of 1 block.
 					Time to begin calculations.
@@ -119,7 +119,7 @@ new Vue({
 						}
           }
         }
-      
+
 				let calculationResult = stack[0];
 
 				// validates result to ensure there wasn't error
@@ -147,13 +147,8 @@ new Vue({
 							isNaN(calculationResult) && calculationResult != undefined ? calculationResult = "Not a number!" : calculationResult = "Non-mathematical formula.";
 							break;
 					}
-					
 					console.log("Invalid formula: " + vm.formula + " | Finished with error: " + calculationResult); vm.answer = errorMsg(); vm.valid = false;
-        }
-
-        else {
-					console.log("Result: " + calculationResult + " | Formula: " + vm.formula + " | Obtained in " + trimmedExpression.length + " steps."); vm.answer = calculationResult; vm.valid = true;
-        }
+        } else { console.log("Result: " + calculationResult + " | Formula: " + vm.formula + " | Obtained in " + trimmedExpression.length + " steps."); vm.answer = calculationResult; vm.valid = true; }
       }
 			
 			// nooo you cant just throw everything in one function
