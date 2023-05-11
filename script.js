@@ -65,7 +65,7 @@ new Vue({
         let stack = [];
 
         for (let i = 0; i < trimmedExpression.length; i++) {
-					// if is number AND is finite, will be number. must also check
+					// if is number AND is finite, will be number.
           if (!isNaN(trimmedExpression[i]) && isFinite(trimmedExpression[i])) {
 						stack.push(trimmedExpression[i]);
           }

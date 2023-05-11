@@ -1,5 +1,7 @@
 @echo off
 
+rem yes i know this code is disgusting and crude but oh well
+
 xcopy index.html public\ /y /v /q /i
 xcopy sw.js public\ /y /v /q /i
 xcopy script.js public\ /y /v /q /i
