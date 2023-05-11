@@ -15,16 +15,16 @@ Then, run:
 firebase login
 ```
 
-to log in to your Firebase account. Then, to initialize the repository with your own cloud project, run:
+To initialize the repository with your own cloud project, run:
 
 ```
 firebase init
 ```
 
-and follow the instructions. Finally, to deploy, run:
+Finally, run the script to copy over required files to the ``public`` directory for deployment:
 
 ```
-firebase deploy
+./deploy.bat
 ```
 
 Have fun and happy RPN calculating!
